@@ -38,6 +38,18 @@ class Product(BaseModel):
     category: str = Field(..., description="Product category")
     in_stock: bool = Field(True, description="Whether product is in stock")
 
+# Fantasy Challenge Game Schemas
+
+class Leaderboard(BaseModel):
+    """
+    Leaderboard entries for 5-minute fantasy challenge.
+    Collection name: "leaderboard"
+    """
+    player_name: str = Field(..., min_length=1, max_length=30, description="Display name of the player")
+    score: int = Field(..., ge=0, description="Total score achieved in a run")
+    duration_seconds: int = Field(..., ge=1, le=300, description="How long the run lasted (max 5 minutes)")
+    streak: int = Field(0, ge=0, description="Longest correct answer streak in the run")
+
 # Add your own schemas here:
 # --------------------------------------------------
 
